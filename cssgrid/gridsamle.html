@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    #site {
+        display: grid;
+        row-gap: 30px;
+        column-gap: 30px;
+        grid-template-areas:
+    "header header header"
+    "main main sidebar"
+    "remark remark remark"
+    "footer footer footer";
+    }
+
+    #header, #main, #sidebar, #remark, #footer {
+        border: 1px solid;
+        border-radius: 5px;
+    }
+
+    #header {
+        grid-area: header;
+    }
+
+    #main {
+        grid-area: main;
+    }
+
+    #sidebar {
+        grid-area: sidebar;
+    }
+
+    #remark {
+        grid-area: remark;
+    }
+
+    #footer {
+        grid-area: footer;
+    }
+
+    @media screen and (max-width: 728px) {
+        #site {
+            grid-template-areas:
+        "header"
+        "main"
+        "remark"
+        "footer";
+        }
+
+        #sidebar {
+            display: none;
+        }
+    }
+
+</style>
+
+<body>
+
+<div id="site">
+
+    <div id="header">
+        <h1>Header of the site</h1>
+    </div>
+
+    <div id="main">
+        <h2>main content</h2>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ullamcorper nec lectus non condimentum.
+        Vestibulum feugiat consequat ullamcorper.
+        In sodales ullamcorper neque, id fermentum ante interdum nec. Vestibulum euismod pharetra rutrum. Vestibulum
+        tempus gravida odio,
+        vel condimentum lorem cursus at. Fusce volutpat sem sem, ut elementum ligula bibendum vel. Morbi
+    </div>
+
+    <div id="sidebar">
+        Sider!
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur interdum elit sollicitudin eros dignissim
+        bibendum. Morbi pretium elit sed erat.
+    </div>
+
+    <div id="remark">
+        remark!
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur interdum elit sollicitudin eros dignissim
+        bibendum. Morbi pretium elit sed erat.
+    </div>
+
+    <div id="footer">
+        footer!
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur interdum elit sollicitudin eros dignissim
+        bibendum. Morbi pretium elit sed erat.
+    </div>
+
+</div>
+
+</body>
+</html>
