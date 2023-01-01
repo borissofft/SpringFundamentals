@@ -3,8 +3,6 @@ package bg.softuni.mobilele.model.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 @Entity
 @Table(name = "brands")
 public class Brand extends BaseEntity {
@@ -32,19 +30,6 @@ public class Brand extends BaseEntity {
 
     public void setModels(List<Model> models) {
         this.models = models;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Brand brand = (Brand) o;
-        return name.equals(brand.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
     }
 
     @Override

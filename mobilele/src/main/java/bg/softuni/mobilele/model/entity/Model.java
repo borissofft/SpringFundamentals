@@ -3,9 +3,6 @@ package bg.softuni.mobilele.model.entity;
 import bg.softuni.mobilele.model.entity.enums.Category;
 
 import javax.persistence.*;
-
-// TODO example with UUID
-
 @Entity
 @Table(name = "models")
 public class Model extends BaseEntity {
