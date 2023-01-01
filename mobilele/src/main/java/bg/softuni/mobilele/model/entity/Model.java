@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "models")
 public class Model extends BaseEntity {
-
     private String name;
     private Category category;
     private String imageUrl;
@@ -74,6 +73,20 @@ public class Model extends BaseEntity {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Model{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", category=").append(category);
+        sb.append(", imageUrl='").append(imageUrl).append('\'');
+        sb.append(", startYear=").append(startYear);
+        sb.append(", endYear=").append(endYear);
+        sb.append(", brand=").append(brand != null ? brand.getName() : null); // Very important. When we have bidirectional relation its mandatory to get only the name of the other Object
+                                                                              // not the all Object. Because if we invoque toString method it will create infinity loop
+        sb.append('}');
+        return sb.toString();
     }
 
 }
