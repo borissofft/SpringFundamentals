@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "roles")
 public class Role extends BaseEntity {
-    private RoleName name;
+    private RoleName role;
 
     public Role() {
 
@@ -14,12 +14,12 @@ public class Role extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column
-    public RoleName getName() {
-        return name;
+    public RoleName getRole() {
+        return role;
     }
 
-    public void setName(RoleName name) {
-        this.name = name;
+    public void setRole(RoleName name) {
+        this.role = name;
     }
 
 }

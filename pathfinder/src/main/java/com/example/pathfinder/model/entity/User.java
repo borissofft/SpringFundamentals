@@ -76,6 +76,9 @@ public class User extends BaseEntity {
     }
 
     @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name="user_entity_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="roles_id", referencedColumnName="id"))
     public Set<Role> getRoles() {
         return roles;
     }
