@@ -1,5 +1,7 @@
 -- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
 
+-- When you try to insert data from this sql file set in application.yml: spring.jpa.hibernate.ddl-auto = create
+
 -- user roles
 INSERT INTO roles (id, role)
 VALUES (1, 'ADMIN');
