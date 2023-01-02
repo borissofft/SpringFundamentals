@@ -2,7 +2,7 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/pathfinder?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
-    username: root
+    username: 'root'
     password:
   servlet:
     multipart:
@@ -33,3 +33,10 @@ spring:
   #api-key: 
   #api-secret: 
   #cloud-name: 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor: TRACE
