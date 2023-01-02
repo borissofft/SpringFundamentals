@@ -1,0 +1,69 @@
+Pleace remember that ER Diagram have some different fields and constraints!
+The idea is that the project is open to edit and extend. There are added other strict constraints in the code by us.
+
+
+Role
+Create a Role class, which holds the following properties:
+•	id - Accepts UUID String or Long values
+•	name - Accepts String values 
+o	USER, MODERATOR and ADMIN 
+
+
+User
+The User Entity should hold the following properties
+•	id - Accepts UUID String or Long values 
+•	username - Accepts String values
+o	Accepts values, which should be at least 2 characters
+•	password - Accepts String values
+o	Accepts values, which should be at least 2 characters
+•	email - Accepts String values
+o	Accepts values, which contain the '@' symbol
+•	role - Accepts Role Entity values
+o	Each registered user should have a "User" role
+•	level - Accepts a level of the user (BEGINNER, INTERMEDIATE, ADVANCED)
+
+
+Comments
+The Comments Entity should hold the following properties
+•	id - Accepts UUID String or Long values
+•	approved - Accepts boolean values
+•	created - Accepts Date and Time values
+o	 The values should not be future dates
+•	text content - Accepts very long text values
+•	author - Accepts User Entities as values
+•	route - Accepts Route Entities as values
+
+
+Pictures
+The Pictures Entity should hold the following properties
+•	id - Accepts UUID String or Long values
+•	title - Accepts String values
+•	url - Accepts very long String values
+•	author - Accepts User Entities as values
+•	route - Accepts Route Entities as values
+
+
+Route
+The Route Entity should hold the following properties
+•	id - Accepts UUID String or Long values 
+•	gpx coordinates - Accepts very long text values
+•	level - Accepts the levels of the routes (BEGINNER, INTERMEDIATE, ADVANCED) as values
+•	name - Accepts String values
+•	author - Accepts User Entities as values
+•	video url – Accepts the ids of youtube videos as values
+
+
+Categories
+The Categories Entity should hold the following properties
+•	id - Accepts UUID String or Long values 
+•	name - Accepts String values (PEDESTRIAN, BICYCLE, MOTORCYCLE, CAR)
+•	description - Accepts very long String values
+
+
+Messages
+Create a Message class, which holds the following properties:
+•	id - Accepts UUID String or Long values 
+•	date time - Accepts Date and Time values
+•	text content - Accepts very long String values
+•	author - Accepts User Entities as values
+•	recipient - Accepts User Entities as values
