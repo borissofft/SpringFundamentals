@@ -43,8 +43,8 @@ public class User extends BaseEntity {
         return fullName;
     }
 
-    public void setFullName(String username) {
-        this.fullName = username;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @Column(nullable = false)
