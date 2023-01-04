@@ -21,12 +21,18 @@ public class UserLoginController {
         return "auth-login";
     }
 
+    @GetMapping("/users/logout")
+    public String logout() {
+        this.userService.logout();
+        return "redirect:/";
+    }
+
     @PostMapping("/users/login")
     public String login(UserLoginDto userLoginDto) {
-        System.out.println("User is logged: " + this.userService.login(userLoginDto));
+        this.userService.login(userLoginDto);
         return "redirect:/";
     }
 
 }
 
-// 1:18:00
+// 0:52:00
