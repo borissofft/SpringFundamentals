@@ -35,7 +35,7 @@ public class CurrentUser {
 
     public void clear() {
         this.loggedIn = false;
-        name = null;
+        this.name = null;
     }
 
 }

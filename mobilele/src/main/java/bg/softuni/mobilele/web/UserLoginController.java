@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/users")
 public class UserLoginController {
     private final UserService userService;
 
@@ -16,18 +18,18 @@ public class UserLoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("/login")
     public String login() {
         return "auth-login";
     }
 
-    @GetMapping("/users/logout")
+    @GetMapping("/logout")
     public String logout() {
         this.userService.logout();
         return "redirect:/";
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     public String login(UserLoginDto userLoginDto) {
         this.userService.login(userLoginDto);
         return "redirect:/";
