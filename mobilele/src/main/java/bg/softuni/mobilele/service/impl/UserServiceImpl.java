@@ -8,6 +8,7 @@ import bg.softuni.mobilele.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,11 +18,13 @@ public class UserServiceImpl implements UserService {
     private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final CurrentUser currentUser;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser) {
+    public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +35,10 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        boolean success = userOpt.get().getPassword().equals(loginDto.getPassword());
+        String rawPassword = loginDto.getPassword(); // it comes from html form
+        String encodedPassword = userOpt.get().getPassword(); // it comes from DB
+        boolean success = this.passwordEncoder.matches(rawPassword, encodedPassword);
+
         if (success) {
             login(userOpt.get());
         } else {

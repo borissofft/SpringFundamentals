@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.model.dto;
 
 public class UserRegisterDto {
+    private String email;
     private String firstName;
     private String lastName;
     private String username;
@@ -9,6 +10,14 @@ public class UserRegisterDto {
 
     public UserRegisterDto() {
 
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

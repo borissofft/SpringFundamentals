@@ -13,7 +13,7 @@ public class UserRegistrationController {
         return "auth-register";
     }
 
-    @PostMapping("")
+    @PostMapping("/users/register")
     public String register(UserRegisterDto userRegisterDto) {
         return "redirect:/";
     }
