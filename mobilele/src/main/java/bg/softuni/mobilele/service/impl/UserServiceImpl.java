@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.service.impl;
 
 import bg.softuni.mobilele.model.dto.UserLoginDto;
+import bg.softuni.mobilele.model.dto.UserRegisterDto;
 import bg.softuni.mobilele.model.entity.User;
 import bg.softuni.mobilele.repository.UserRepository;
 import bg.softuni.mobilele.service.UserService;
@@ -20,11 +21,27 @@ public class UserServiceImpl implements UserService {
     private final CurrentUser currentUser;
     private final PasswordEncoder passwordEncoder;
 
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public void registerAndLogin(UserRegisterDto userRegisterDto) {
+
+        User newUser = new User();
+        newUser.setActive(true);
+        newUser.setEmail(userRegisterDto.getEmail());
+        newUser.setFirstName(userRegisterDto.getFirstName());
+        newUser.setLastName(userRegisterDto.getLastName());
+        newUser.setPassword(this.passwordEncoder.encode(userRegisterDto.getPassword()));
+
+        this.userRepository.save(newUser);
+        login(newUser);
+
     }
 
     @Override
@@ -48,6 +65,7 @@ public class UserServiceImpl implements UserService {
         return success;
     }
 
+
     private void login(User user) {
         this.currentUser.setLoggedIn(true);
         this.currentUser.setName(user.getFirstName() + " " + user.getLastName());
@@ -57,5 +75,6 @@ public class UserServiceImpl implements UserService {
     public void logout() {
         this.currentUser.clear();
     }
+
 
 }

@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.web;
 
 import bg.softuni.mobilele.model.dto.UserLoginDto;
+import bg.softuni.mobilele.model.dto.UserRegisterDto;
 import bg.softuni.mobilele.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/users")
-public class UserLoginController {
+public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserLoginController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -35,6 +36,19 @@ public class UserLoginController {
         return "redirect:/";
     }
 
+    @GetMapping("register")
+    public String register() {
+        return "auth-register";
+    }
+
+    @PostMapping("register")
+    public String register(UserRegisterDto userRegisterDto) {
+        this.userService.registerAndLogin(userRegisterDto);
+        return "redirect:/";
+    }
+
+    // TODO: Explain POST-redirect-GET
+
 }
 
-// 0:52:00
+// 0:20:00
