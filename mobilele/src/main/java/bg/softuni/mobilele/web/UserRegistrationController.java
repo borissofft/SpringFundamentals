@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+// browser -> send forms -> controller(DTO from browser) -> Model -> thymeleaf(pars html) -> browser
+
 @Controller
 @RequestMapping("/users")
 public class UserRegistrationController {
@@ -23,12 +25,12 @@ public class UserRegistrationController {
         this.userService = userService;
     }
 
+    // @ModelAttribute -> When executed @GetMapping/@PostMapping we will have one userModel with added attributes which will be empty and can be used in the form "auth-register" for rendering the form
+    // We can add attributes and can be used in every @GetMapping/@PostMapping. No need to make new Model in every @GetMapping/@PostMapping and add attributes in it
     @ModelAttribute("userModel")
     public void initUserModel(Model model) {
         model.addAttribute("userModel", new UserRegisterDto());
     }
-
-    // @ModelAttribute -> When executed @GetMapping we will have one userModel which will be empty and can be used in the form "auth-register"
 
     @GetMapping("register")
     public String register() {
