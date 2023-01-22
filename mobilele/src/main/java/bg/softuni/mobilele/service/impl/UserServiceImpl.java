@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         }
 
         String rawPassword = loginDto.getPassword(); // it comes from html form
-        String encodedPassword = userOpt.get().getPassword(); // it comes from DB
+        String encodedPassword = userOpt.get().getPassword(); // it comes from DB (hashed password)
         boolean success = this.passwordEncoder.matches(rawPassword, encodedPassword);
 
         if (success) {

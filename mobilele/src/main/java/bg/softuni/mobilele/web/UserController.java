@@ -5,9 +5,12 @@ import bg.softuni.mobilele.model.dto.UserRegisterDto;
 import bg.softuni.mobilele.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -24,15 +27,15 @@ public class UserController {
         return "auth-login";
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        this.userService.logout();
-        return "redirect:/";
-    }
-
     @PostMapping("/login")
     public String login(UserLoginDto userLoginDto) {
         this.userService.login(userLoginDto);
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        this.userService.logout();
         return "redirect:/";
     }
 
@@ -42,7 +45,13 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public String register(UserRegisterDto userRegisterDto) {
+    public String register(@Valid UserRegisterDto userRegisterDto,
+                           BindingResult bindingResult) { // allows us to handle the error rather than print out all the error message on the endpoint: /users/register
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/users/register";
+        }
+
         this.userService.registerAndLogin(userRegisterDto);
         return "redirect:/";
     }
@@ -51,4 +60,4 @@ public class UserController {
 
 }
 
-// 0:20:00
+// 1:17:00

@@ -1,5 +1,9 @@
 package bg.softuni.mobilele.model.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserRegisterDto {
     private String email;
     private String firstName;
@@ -12,6 +16,8 @@ public class UserRegisterDto {
 
     }
 
+    @NotBlank
+    @Email
     public String getEmail() {
         return email;
     }
@@ -20,6 +26,8 @@ public class UserRegisterDto {
         this.email = email;
     }
 
+    @NotBlank
+    @Size(min = 2, max = 20)
     public String getFirstName() {
         return firstName;
     }
@@ -28,6 +36,8 @@ public class UserRegisterDto {
         this.firstName = firstName;
     }
 
+    @NotBlank
+    @Size(min = 2, max = 20)
     public String getLastName() {
         return lastName;
     }
@@ -44,6 +54,8 @@ public class UserRegisterDto {
         this.username = username;
     }
 
+    @NotBlank
+    @Size(min = 5)
     public String getPassword() {
         return password;
     }
