@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserLoginDto userLoginDto) {
-        this.userService.login(userLoginDto);
+    public String login(UserLoginDto userModel) {
+        this.userService.login(userModel);
         return "redirect:/";
     }
 
@@ -39,25 +39,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("register")
-    public String register() {
-        return "auth-register";
-    }
-
-    @PostMapping("register")
-    public String register(@Valid UserRegisterDto userRegisterDto,
-                           BindingResult bindingResult) { // allows us to handle the error rather than print out all the error message on the endpoint: /users/register
-
-        if (bindingResult.hasErrors()) {
-            return "redirect:/users/register";
-        }
-
-        this.userService.registerAndLogin(userRegisterDto);
-        return "redirect:/";
-    }
-
-    // TODO: Explain POST-redirect-GET
-
 }
 
-// 1:17:00
+// 0:42:00
