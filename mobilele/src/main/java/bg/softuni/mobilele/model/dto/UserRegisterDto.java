@@ -1,5 +1,7 @@
 package bg.softuni.mobilele.model.dto;
 
+import bg.softuni.mobilele.model.validation.UniqueUserEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -16,8 +18,9 @@ public class UserRegisterDto {
 
     }
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "User email should be provided")
+    @Email(message = "User email should be valid.")
+    @UniqueUserEmail(message = "User email should be unique.")
     public String getEmail() {
         return email;
     }
