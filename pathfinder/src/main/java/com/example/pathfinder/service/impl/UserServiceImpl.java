@@ -55,4 +55,9 @@ public class UserServiceImpl implements UserService {
                 .map(user ->  this.modelMapper.map(user, UserServiceModel.class))
                 .orElse(null);
     }
+
+    @Override
+    public boolean isNameExist(String username) {
+        return this.userRepository.existsByUsername(username);
+    }
 }

@@ -63,6 +63,12 @@ public class UserController {
             return "redirect:register"; // register is the name of the method! We have populated valid data(in the form) because of using th:field="" in register.html
         }
 
+        boolean isNameExist = this.userService.isNameExist(userRegisterBindingModel.getUsername());
+
+        if (isNameExist) {
+            // TODO ... redirect with message
+        }
+
         this.userService.registerUser(this.modelMapper
                 .map(userRegisterBindingModel, UserServiceModel.class));
 
@@ -121,5 +127,3 @@ public class UserController {
     }
 
 }
-
-//2:59:00
