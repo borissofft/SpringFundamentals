@@ -3,6 +3,7 @@ package bg.softuni.mobilele.service.impl;
 import bg.softuni.mobilele.model.dto.UserLoginDto;
 import bg.softuni.mobilele.model.dto.UserRegisterDto;
 import bg.softuni.mobilele.model.entity.User;
+import bg.softuni.mobilele.model.mapper.UserMapper;
 import bg.softuni.mobilele.repository.UserRepository;
 import bg.softuni.mobilele.service.UserService;
 import bg.softuni.mobilele.user.CurrentUser;
@@ -20,23 +21,21 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final CurrentUser currentUser;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     @Override
     public void registerAndLogin(UserRegisterDto userRegisterDto) {
 
-        User newUser = new User();
-        newUser.setActive(true);
-        newUser.setEmail(userRegisterDto.getEmail());
-        newUser.setFirstName(userRegisterDto.getFirstName());
-        newUser.setLastName(userRegisterDto.getLastName());
+        User newUser = this.userMapper.userDtoToUserEntity(userRegisterDto);
         newUser.setPassword(this.passwordEncoder.encode(userRegisterDto.getPassword()));
 
         this.userRepository.save(newUser);
