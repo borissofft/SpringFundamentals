@@ -34,7 +34,7 @@ public class AddOfferDto {
         this.imageUrl = imageUrl;
     }
 
-    @NotEmpty
+    @NotNull
     public Transmission getTransmission() {
         return transmission;
     }
