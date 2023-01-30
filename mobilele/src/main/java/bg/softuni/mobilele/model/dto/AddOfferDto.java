@@ -7,7 +7,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class AddOfferDto {
-
     private Engine engine;
     private Transmission transmission;
     private String imageUrl;
