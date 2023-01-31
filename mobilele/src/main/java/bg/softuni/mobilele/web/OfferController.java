@@ -53,9 +53,9 @@ public class OfferController {
         // TODO ...
         this.offerService.addOffer(addOfferModel);
 
-        return "redirect:/";
+        return "redirect:/offers/all";
     }
 
 }
 
-// 00:50:53
+// 00:21:17

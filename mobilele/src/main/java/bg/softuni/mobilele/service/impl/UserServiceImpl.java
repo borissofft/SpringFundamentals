@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
     private void login(User user) {
         this.currentUser.setLoggedIn(true);
         this.currentUser.setName(user.getFirstName() + " " + user.getLastName());
+        this.currentUser.setEmail(user.getEmail());
     }
 
     @Override
