@@ -1,0 +1,23 @@
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: DEBUG
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password:
+        url: jdbc:mysql://localhost:3306/coffee-shop-exam?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: root
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format_sql: true
+    mvc:
+        hidden-method:
+            filter:
+                enabled: true
