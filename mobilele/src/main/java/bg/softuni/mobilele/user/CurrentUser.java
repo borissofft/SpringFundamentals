@@ -46,6 +46,7 @@ public class CurrentUser {
     public void clear() {
         this.loggedIn = false;
         this.name = null;
+        this.email = null;
     }
 
 }
