@@ -1,7 +1,11 @@
 package com.example.coffeeshop.web;
 
 import com.example.coffeeshop.model.binding.UserRegisterBindingModel;
+import com.example.coffeeshop.model.service.UserServiceModel;
+import com.example.coffeeshop.service.UserService;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/users")
 public class UserController {
+    private final UserService userService;
+    private final ModelMapper modelMapper;
+
+    @Autowired
+    public UserController(UserService userService, ModelMapper modelMapper) {
+        this.userService = userService;
+        this.modelMapper = modelMapper;
+    }
 
     @ModelAttribute
     public UserRegisterBindingModel userRegisterBindingModel() {
@@ -40,7 +52,8 @@ public class UserController {
             return "redirect:register";
         }
 
-        // TODO save in DB
+        this.userService.registerUser(this.modelMapper
+                .map(userRegisterBindingModel, UserServiceModel.class));
 
         return "redirect:login";
     }
