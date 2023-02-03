@@ -1,6 +1,7 @@
 package com.example.coffeeshop.web;
 
 import com.example.coffeeshop.model.binding.OrderAddBindingModel;
+import com.example.coffeeshop.model.service.OrderServiceModel;
 import com.example.coffeeshop.service.OrderService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -50,6 +51,8 @@ public class OrderController {
         }
 
         // TODO add to DB
+        this.orderService.addOrder(modelMapper
+                .map(orderAddBindingModel, OrderServiceModel.class));
 
         return "redirect:/";
     }
