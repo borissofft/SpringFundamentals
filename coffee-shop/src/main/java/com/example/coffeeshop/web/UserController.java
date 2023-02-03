@@ -105,6 +105,14 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("logout")
+    public String logout() {
+        this.userService.logOut();
+        return "redirect:/";
+    }
+
+
+
 }
 
 // 02:31:32

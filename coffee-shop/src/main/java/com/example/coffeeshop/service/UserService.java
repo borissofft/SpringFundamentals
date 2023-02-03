@@ -36,4 +36,9 @@ public class UserService {
         this.currentUser.setId(id);
         this.currentUser.setUsername(username);
     }
+
+    public void logOut() {
+        this.currentUser.setId(null);
+        this.currentUser.setUsername(null);
+    }
 }
