@@ -38,7 +38,7 @@ public class HomeController {
                 .stream()
                 .map(orderViewModel -> orderViewModel.getCategory().getNeededTime())
                 .reduce(Integer::sum)
-                .orElse(null));
+                .orElse(0));
 
         List<UserViewModel> users = this.userService.findAllUserAndCountOfOrdersOrderByCountDesc();
         model.addAttribute("users", users);

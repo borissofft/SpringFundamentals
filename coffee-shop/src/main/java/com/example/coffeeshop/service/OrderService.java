@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -42,4 +43,9 @@ public class OrderService {
                 .map(order -> this.modelMapper.map(order, OrderViewModel.class))
                 .toList();
     }
+
+    public void readyOrder(Long id) {
+       this.orderRepository.deleteById(id);
+    }
+
 }
