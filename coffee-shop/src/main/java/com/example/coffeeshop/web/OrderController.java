@@ -51,7 +51,7 @@ public class OrderController {
         }
 
         // TODO add to DB
-        this.orderService.addOrder(modelMapper
+        this.orderService.addOrder(this.modelMapper
                 .map(orderAddBindingModel, OrderServiceModel.class));
 
         return "redirect:/";

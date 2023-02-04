@@ -1,10 +1,7 @@
 package com.example.coffeeshop.model.binding;
 
 import com.example.coffeeshop.model.enums.CategoryName;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -32,7 +29,7 @@ public class OrderAddBindingModel {
         this.name = name;
     }
 
-    @NotBlank
+    @NotNull
     @Positive
     public BigDecimal getPrice() {
         return price;
@@ -42,7 +39,7 @@ public class OrderAddBindingModel {
         this.price = price;
     }
 
-    @NotBlank
+    @NotNull
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     public LocalDateTime getOrderTime() {
@@ -53,7 +50,7 @@ public class OrderAddBindingModel {
         this.orderTime = orderTime;
     }
 
-    @NotBlank
+    @NotNull
     public CategoryName getCategory() {
         return category;
     }

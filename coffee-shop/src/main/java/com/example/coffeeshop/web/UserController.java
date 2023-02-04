@@ -4,6 +4,7 @@ import com.example.coffeeshop.model.binding.UserLoginBindingModel;
 import com.example.coffeeshop.model.binding.UserRegisterBindingModel;
 import com.example.coffeeshop.model.service.UserServiceModel;
 import com.example.coffeeshop.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,12 +106,21 @@ public class UserController {
         return "redirect:/";
     }
 
+    // TODO logout
+
+    // Variant 1
+//    @GetMapping("logout")
+//    public String logout() {
+//        this.userService.logOut();
+//        return "redirect:/";
+//    }
+
+    // Variant 2
     @GetMapping("logout")
-    public String logout() {
-        this.userService.logOut();
+    public String logout(HttpSession httpSession) {
+        httpSession .invalidate();
         return "redirect:/";
     }
-
 
 
 }
