@@ -2,11 +2,14 @@ package com.example.coffeeshop.service;
 
 import com.example.coffeeshop.model.entity.Order;
 import com.example.coffeeshop.model.service.OrderServiceModel;
+import com.example.coffeeshop.model.view.OrderViewModel;
 import com.example.coffeeshop.repository.OrderRepository;
 import com.example.coffeeshop.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -31,5 +34,12 @@ public class OrderService {
         order.setEmployee(this.userService.findById(this.currentUser.getId()));
         order.setCategory(this.categoryService.findByCategoryName(orderServiceModel.getCategory()));
         this.orderRepository.save(order);
+    }
+
+    public List<OrderViewModel> findAllOrdersOrderByPriceDesc() {
+        return this.orderRepository.findAllByOrderByPriceDesc()
+                .stream()
+                .map(order -> this.modelMapper.map(order, OrderViewModel.class))
+                .toList();
     }
 }
