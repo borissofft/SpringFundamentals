@@ -2,11 +2,14 @@ package com.example.coffeeshop.service;
 
 import com.example.coffeeshop.model.entity.User;
 import com.example.coffeeshop.model.service.UserServiceModel;
+import com.example.coffeeshop.model.view.UserViewModel;
 import com.example.coffeeshop.repository.UserRepository;
 import com.example.coffeeshop.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -46,5 +49,17 @@ public class UserService {
         return this.userRepository
                 .findById(id)
                 .orElse(null);
+    }
+
+    public List<UserViewModel> findAllUserAndCountOfOrdersOrderByCountDesc() { // Could be done wit query which get Object with needed fields only
+        return this.userRepository.findAllByOrdersCountDesc()
+                .stream()
+                .map(user -> {
+                    UserViewModel userViewModel = new UserViewModel();
+                    userViewModel.setUsername(user.getUsername());
+                    userViewModel.setCountOfOrders(user.getOrders().size());
+                    return userViewModel;
+                })
+                .toList();
     }
 }

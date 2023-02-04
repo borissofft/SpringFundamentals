@@ -1,7 +1,9 @@
 package com.example.coffeeshop.web;
 
 import com.example.coffeeshop.model.view.OrderViewModel;
+import com.example.coffeeshop.model.view.UserViewModel;
 import com.example.coffeeshop.service.OrderService;
+import com.example.coffeeshop.service.UserService;
 import com.example.coffeeshop.util.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +16,13 @@ import java.util.List;
 public class HomeController {
     private final CurrentUser currentUser;
     private final OrderService orderService;
+    private final UserService userService;
 
     @Autowired
-    public HomeController(CurrentUser currentUser, OrderService orderService) {
+    public HomeController(CurrentUser currentUser, OrderService orderService, UserService userService) {
         this.currentUser = currentUser;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -35,6 +39,9 @@ public class HomeController {
                 .map(orderViewModel -> orderViewModel.getCategory().getNeededTime())
                 .reduce(Integer::sum)
                 .orElse(null));
+
+        List<UserViewModel> users = this.userService.findAllUserAndCountOfOrdersOrderByCountDesc();
+        model.addAttribute("users", users);
 
         return "home";
     }
