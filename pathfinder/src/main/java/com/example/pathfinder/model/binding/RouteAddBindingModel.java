@@ -23,7 +23,7 @@ public class RouteAddBindingModel {
     }
 
     @NotBlank
-    @Size(min = 5, max = 20, message = "Route name must be between 3 and 20 characters!")
+    @Size(min = 3, max = 20, message = "Route name must be between 3 and 20 characters!")
     public String getName() {
         return name;
     }
@@ -40,6 +40,7 @@ public class RouteAddBindingModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     public MultipartFile getGpxCoordinates() {
         return gpxCoordinates;

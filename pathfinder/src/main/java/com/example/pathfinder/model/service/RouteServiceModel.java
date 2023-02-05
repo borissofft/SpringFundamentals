@@ -3,6 +3,7 @@ package com.example.pathfinder.model.service;
 import com.example.pathfinder.model.entity.Category;
 import com.example.pathfinder.model.entity.Picture;
 import com.example.pathfinder.model.entity.User;
+import com.example.pathfinder.model.enums.CategoryName;
 import com.example.pathfinder.model.enums.Level;
 
 import java.util.Set;
@@ -16,7 +17,7 @@ public class RouteServiceModel {
     private User author;
     private String videoUrl;
     private Set<Picture> pictures;
-    private Set<Category> categories;
+    private Set<CategoryName> categories;
 
     public RouteServiceModel() {
 
@@ -86,11 +87,11 @@ public class RouteServiceModel {
         this.pictures = pictures;
     }
 
-    public Set<Category> getCategories() {
+    public Set<CategoryName> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(Set<CategoryName> categories) {
         this.categories = categories;
     }
 }
