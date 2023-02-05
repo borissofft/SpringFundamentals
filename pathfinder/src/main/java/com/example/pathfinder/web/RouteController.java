@@ -73,6 +73,8 @@ public class RouteController {
                 .map(routeAddBindingModel, RouteServiceModel.class);
         routeServiceModel.setGpxCoordinates(new String(routeAddBindingModel.getGpxCoordinates().getBytes()));
 
+        this.routeService.addNewRoute(routeServiceModel);
+
         return "redirect:all";
     }
 

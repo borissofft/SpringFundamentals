@@ -1,8 +1,13 @@
 package com.example.pathfinder.service.impl;
 
+import com.example.pathfinder.model.entity.Route;
+import com.example.pathfinder.model.entity.User;
+import com.example.pathfinder.model.service.RouteServiceModel;
 import com.example.pathfinder.model.view.RouteViewModel;
 import com.example.pathfinder.repository.RouteRepository;
+import com.example.pathfinder.service.CategoryService;
 import com.example.pathfinder.service.RouteService;
+import com.example.pathfinder.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +17,14 @@ import java.util.List;
 public class RouteServiceImpl implements RouteService {
 
     private final RouteRepository routeRepository;
+    private final UserService userService;
+    private final CategoryService categoryService;
     private final ModelMapper modelMapper;
 
-    public RouteServiceImpl(RouteRepository routeRepository, ModelMapper modelMapper) {
+    public RouteServiceImpl(RouteRepository routeRepository, UserService userService, CategoryService categoryService, ModelMapper modelMapper) {
         this.routeRepository = routeRepository;
+        this.userService = userService;
+        this.categoryService = categoryService;
         this.modelMapper = modelMapper;
     }
 
@@ -35,4 +44,16 @@ public class RouteServiceImpl implements RouteService {
                 })
                 .toList();
     }
+
+    @Override
+    public void addNewRoute(RouteServiceModel routeServiceModel) {
+        Route route = this.modelMapper.map(routeServiceModel, Route.class);
+        User user = this.userService.findCurrentLoginUserEntity();
+        route.setAuthor(user);
+
+
+        this.routeRepository.save(route);
+    }
 }
+
+// 2:20:57
