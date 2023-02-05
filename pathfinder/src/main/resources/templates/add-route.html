@@ -14,6 +14,7 @@
     <form
             id="add-route-form"
             class="w-50 rounded text-white mt-5"
+            th:object="${routeAddBindingModel}"
             th:action="@{/routes/add}"
             th:method="post" enctype="multipart/form-data">
 
