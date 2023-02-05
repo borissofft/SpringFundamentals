@@ -89,7 +89,7 @@ public class UserController {
         if (bindingResult.hasErrors()) { // If we have problems with BindingModel
             redirectAttributes
                     .addFlashAttribute("userLoginBindingModel", userLoginBindingModel)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel",
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel",
                             bindingResult);
 
             return "redirect:login";

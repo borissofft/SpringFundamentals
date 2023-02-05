@@ -22,12 +22,17 @@
                     <div class="col-auto">
                         <input
                                 th:field="*{username}"
+                                th:errorclass="'is-invalid bg-danger'"
                                 type="text"
                                 required minlength="4" maxlength="20"
                                 id="inputUsername"
                                 class="form-control"
                                 aria-describedby="usernameHelpInline">
+<!--                        Not working - have to implement it correct-->
                     </div>
+                    <small class="invalid-feedback">
+                        <span class="bg-danger">Wrong username and password combination</span>
+                    </small>
                 </div>
                 <div>
                     <div class="col-auto">
