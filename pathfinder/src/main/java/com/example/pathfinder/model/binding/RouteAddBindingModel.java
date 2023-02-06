@@ -50,7 +50,7 @@ public class RouteAddBindingModel {
         this.gpxCoordinates = gpxCoordinates;
     }
 
-    @NotNull
+
     public Level getLevel() {
         return level;
     }

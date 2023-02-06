@@ -1,5 +1,7 @@
 package com.example.pathfinder.service.impl;
 
+import com.example.pathfinder.model.entity.Category;
+import com.example.pathfinder.model.enums.CategoryName;
 import com.example.pathfinder.repository.CategoryRepository;
 import com.example.pathfinder.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,4 +17,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 
+    @Override
+    public Category findCategoryByName(CategoryName categoryName) {
+        return this.categoryRepository
+                .findByName(categoryName)
+                .orElse(null);
+    }
 }

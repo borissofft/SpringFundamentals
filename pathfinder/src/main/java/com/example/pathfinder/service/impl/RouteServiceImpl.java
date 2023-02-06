@@ -12,10 +12,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RouteServiceImpl implements RouteService {
-
     private final RouteRepository routeRepository;
     private final UserService userService;
     private final CategoryService categoryService;
@@ -51,9 +51,14 @@ public class RouteServiceImpl implements RouteService {
         User user = this.userService.findCurrentLoginUserEntity();
         route.setAuthor(user);
 
+        route.setCategories(routeServiceModel
+                .getCategories()
+                .stream()
+                .map(this.categoryService::findCategoryByName)
+                .collect(Collectors.toSet()));
 
         this.routeRepository.save(route);
     }
 }
 
-// 2:20:57
+// 2:31:57
