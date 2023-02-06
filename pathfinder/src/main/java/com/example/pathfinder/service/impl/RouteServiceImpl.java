@@ -3,6 +3,7 @@ package com.example.pathfinder.service.impl;
 import com.example.pathfinder.model.entity.Route;
 import com.example.pathfinder.model.entity.User;
 import com.example.pathfinder.model.service.RouteServiceModel;
+import com.example.pathfinder.model.view.RouteDetailsViewModel;
 import com.example.pathfinder.model.view.RouteViewModel;
 import com.example.pathfinder.repository.RouteRepository;
 import com.example.pathfinder.service.CategoryService;
@@ -59,6 +60,14 @@ public class RouteServiceImpl implements RouteService {
 
         this.routeRepository.save(route);
     }
+
+    @Override
+    public RouteDetailsViewModel findRouteById(Long id) {
+        return this.routeRepository
+                .findById(id)
+                .map(route -> this.modelMapper.map(route, RouteDetailsViewModel.class))
+                .orElse(null);
+    }
 }
 
-// 2:31:57
+// 2:58:25
