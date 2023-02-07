@@ -59,8 +59,8 @@
             <p id="route-description" th:text="*{description}">Description: </p>
         </section>
         <section class="gallery">
-            <img class="rounded" src="/images/pic4.jpg" height="100%" alt="">
-            <img class="rounded" src="/images/pic1.jpg" height="100%" alt="">
+            <img class="rounded"
+                    th:each="p : *{pictures}" th:src="${p.url}" height="100%" alt="">
         </section>
         <section class="comments">
             <h1>Comments</h1>
