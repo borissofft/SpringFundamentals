@@ -25,4 +25,15 @@ public class UserService {
         User user = this.modelMapper.map(userServiceModel, User.class);
         this.userRepository.save(user);
     }
+
+    public UserServiceModel findByUsernameAndPassword(String username, String password) {
+        return this.userRepository.findByUsernameAndPassword(username, password)
+                .map(user -> this.modelMapper.map(user, UserServiceModel.class))
+                .orElse(null);
+    }
+
+    public void loginUser(Long id, String username) {
+        this.currentUser.setId(id);
+        this.currentUser.setUsername(username);
+    }
 }
