@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Table(name = "ships")
 public class Ship extends BaseEntity {
     private String name;
-    private Long Health;
-    private Long Power;
+    private Long health;
+    private Long power;
     private LocalDate created;
     private Category category;
     private User user;
@@ -32,20 +32,20 @@ public class Ship extends BaseEntity {
 
     @Column(nullable = false)
     public Long getHealth() {
-        return Health;
+        return health;
     }
 
     public void setHealth(Long health) {
-        Health = health;
+        this.health = health;
     }
 
     @Column(nullable = false)
     public Long getPower() {
-        return Power;
+        return power;
     }
 
     public void setPower(Long power) {
-        Power = power;
+        this.power = power;
     }
 
     @Column(nullable = false)

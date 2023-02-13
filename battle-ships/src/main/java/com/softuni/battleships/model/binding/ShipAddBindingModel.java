@@ -1,6 +1,5 @@
 package com.softuni.battleships.model.binding;
 
-import com.softuni.battleships.model.entity.Category;
 import com.softuni.battleships.model.enums.CategoryEnum;
 import com.softuni.battleships.model.validation.UniqueShipName;
 import jakarta.validation.constraints.*;
@@ -10,8 +9,8 @@ import java.time.LocalDate;
 
 public class ShipAddBindingModel {
     private String name;
-    private Long Power;
-    private Long Health;
+    private Long power;
+    private Long health;
     private LocalDate created;
     private CategoryEnum category;
 
@@ -33,21 +32,21 @@ public class ShipAddBindingModel {
     @NotNull
     @Positive
     public Long getPower() {
-        return Power;
+        return power;
     }
 
     public void setPower(Long power) {
-        Power = power;
+        this.power = power;
     }
 
     @NotNull
     @Positive
     public Long getHealth() {
-        return Health;
+        return health;
     }
 
     public void setHealth(Long health) {
-        Health = health;
+        this.health = health;
     }
 
     @NotNull
