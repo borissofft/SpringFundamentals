@@ -17,11 +17,11 @@ public class HomeController {
     @GetMapping("/")
     public String index() {
 
-//        if (this.currentUser.getId() == null) {
-//            return "index";
-//        }
+        if (this.currentUser.getId() == null) {
+            return "index";
+        }
 
-        return "index";
+        return "home";
     }
 
 }

@@ -35,7 +35,10 @@
                                 class="form-control"
                                 id="name"
                                 aria-describedby="nameHelpInline" placeholder="Name">
-                        <small id="nameHelpInline"
+                        <small
+                                th:each="err : ${#fields.errors('name')}"
+                                th:text="${err}"
+                                id="nameHelpInline"
                                class="invalid-feedback bg-danger text-light rounded">
                             Name must be between 2 and 10 characters.
                         </small>
