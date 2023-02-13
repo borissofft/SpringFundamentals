@@ -13,7 +13,7 @@ public class Category extends BaseEntity {
 
     }
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
     public CategoryEnum getName() {
         return name;

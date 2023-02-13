@@ -1,6 +1,7 @@
 package com.softuni.battleships.model.binding;
 
 import com.softuni.battleships.model.entity.Category;
+import com.softuni.battleships.model.enums.CategoryEnum;
 import com.softuni.battleships.model.validation.UniqueShipName;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +13,7 @@ public class ShipAddBindingModel {
     private Long Power;
     private Long Health;
     private LocalDate created;
-    private Category category;
+    private CategoryEnum category;
 
     public ShipAddBindingModel() {
 
@@ -61,11 +62,11 @@ public class ShipAddBindingModel {
     }
 
     @NotNull
-    public Category getCategory() {
+    public CategoryEnum getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEnum category) {
         this.category = category;
     }
 }
