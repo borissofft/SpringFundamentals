@@ -1,8 +1,10 @@
 package com.softuni.battleships.web;
 
 import com.softuni.battleships.model.binding.ShipAddBindingModel;
-import com.softuni.battleships.repository.ShipRepository;
+import com.softuni.battleships.model.service.ShipServiceModel;
+import com.softuni.battleships.service.ShipService;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,11 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/ships")
 public class ShipController {
-    private final ShipRepository shipRepository;
+    private final ShipService shipService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ShipController(ShipRepository shipRepository) {
-        this.shipRepository = shipRepository;
+    public ShipController(ShipService shipService, ModelMapper modelMapper) {
+        this.shipService = shipService;
+        this.modelMapper = modelMapper;
     }
 
     @ModelAttribute
@@ -47,6 +51,8 @@ public class ShipController {
         }
 
 
+        this.shipService.addShip(this.modelMapper
+                .map(shipAddBindingModel, ShipServiceModel.class));
 
         return "redirect:/";
     }

@@ -36,4 +36,10 @@ public class UserService {
         this.currentUser.setId(id);
         this.currentUser.setUsername(username);
     }
+
+    public User findById(Long id) {
+        return this.userRepository
+                .findById(id)
+                .orElse(null);
+    }
 }

@@ -37,4 +37,9 @@ public class CategoryService {
                 });
     }
 
+    public Category findByCategoryName(CategoryEnum categoryEnum) {
+        return this.categoryRepository
+                .findByName(categoryEnum)
+                .orElse(null);
+    }
 }
