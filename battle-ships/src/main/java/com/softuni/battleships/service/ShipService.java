@@ -41,14 +41,21 @@ public class ShipService {
     }
 
     public List<ShipViewModel> findAllShipsOfCurrentUser(Long id) {
-        return this.shipRepository.findAllById(id)
+        return this.shipRepository.findAllByUser_Id(id)
                 .stream()
                 .map(ship -> this.modelMapper.map(ship, ShipViewModel.class))
                 .toList();
     }
 
     public List<ShipViewModel> findAllOtherShips(Long id) {
-        return this.shipRepository.findAllByIdNot(id)
+        return this.shipRepository.findAllByUser_IdNot(id)
+                .stream()
+                .map(ship -> this.modelMapper.map(ship, ShipViewModel.class))
+                .toList();
+    }
+
+    public List<ShipViewModel> findAll() {
+        return this.shipRepository.findAll()
                 .stream()
                 .map(ship -> this.modelMapper.map(ship, ShipViewModel.class))
                 .toList();
