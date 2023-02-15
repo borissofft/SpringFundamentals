@@ -4,6 +4,7 @@ import com.softuni.battleships.model.binding.UserLoginBindingModel;
 import com.softuni.battleships.model.binding.UserRegisterBindingModel;
 import com.softuni.battleships.model.service.UserServiceModel;
 import com.softuni.battleships.service.UserService;
+import com.softuni.battleships.util.CurrentUser;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -22,11 +23,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final CurrentUser currentUser;
 
     @Autowired
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, CurrentUser currentUser) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.currentUser = currentUser;
     }
 
     @ModelAttribute
@@ -107,6 +110,11 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
+
+        if (this.currentUser.getId() == null) {
+            return "index";
+        }
+
         httpSession .invalidate();
         return "redirect:/";
     }

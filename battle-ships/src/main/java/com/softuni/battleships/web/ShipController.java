@@ -3,6 +3,7 @@ package com.softuni.battleships.web;
 import com.softuni.battleships.model.binding.ShipAddBindingModel;
 import com.softuni.battleships.model.service.ShipServiceModel;
 import com.softuni.battleships.service.ShipService;
+import com.softuni.battleships.util.CurrentUser;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ShipController {
     private final ShipService shipService;
     private final ModelMapper modelMapper;
+    private final CurrentUser currentUser;
 
     @Autowired
-    public ShipController(ShipService shipService, ModelMapper modelMapper) {
+    public ShipController(ShipService shipService, ModelMapper modelMapper, CurrentUser currentUser) {
         this.shipService = shipService;
         this.modelMapper = modelMapper;
+        this.currentUser = currentUser;
     }
 
     @ModelAttribute
@@ -33,6 +36,11 @@ public class ShipController {
 
     @GetMapping("/add")
     public String add() {
+
+        if (this.currentUser.getId() == null) {
+            return "index";
+        }
+
         return "ship-add";
     }
 
